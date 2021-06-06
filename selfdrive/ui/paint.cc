@@ -851,9 +851,9 @@ static void ui_draw_vision_speed(UIState *s) {
 
   if(s->scene.leftBlinker || s->scene.rightBlinker) {
     s->scene.blinker_blinkingrate -= 5;
-    if(s->scene.blinker_blinkingrate < 0) s->scene.blinker_blinkingrate = 90;
+    if(s->scene.blinker_blinkingrate < 0) s->scene.blinker_blinkingrate = 120;
 
-    float progress = (120 - s->scene.blinker_blinkingrate) / 90.0;
+    float progress = (120 - s->scene.blinker_blinkingrate) / 120.0;
     float offset = progress * (6.4 - 1.0) + 1.0;
     if (offset < 1.0) offset = 1.0;
     if (offset > 6.4) offset = 6.4;
@@ -904,16 +904,16 @@ static void ui_draw_vision_face(UIState *s) {
 	
 }
 static void ui_draw_vision_bsd_left(UIState *s) {
-  const int radius = 115;
+  const int radius = 110;
   const int bsd_x = (s->viz_rect.x + radius + (bdr_s*25));
-  const int bsd_y = (s->viz_rect.bottom() - footer_h * 2.4);
+  const int bsd_y = (s->viz_rect.bottom() - footer_h * 2.0);
   ui_draw_circle_image(s, bsd_x, bsd_y - (radius*2), radius, "bsd_l", s->scene.car_state.getLeftBlindspot());
 }
 
 static void ui_draw_vision_bsd_right(UIState *s) {
-  const int radius = 115;
+  const int radius = 110;
   const int bsd_x = (s->viz_rect.x + radius + (bdr_s*52));
-  const int bsd_y = (s->viz_rect.bottom() - footer_h * 2.4);
+  const int bsd_y = (s->viz_rect.bottom() - footer_h * 2.0);
   ui_draw_circle_image(s, bsd_x + (radius*2), bsd_y - (radius*2), radius, "bsd_r", s->scene.car_state.getRightBlindspot());
 }
 
