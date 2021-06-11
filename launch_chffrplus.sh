@@ -13,10 +13,15 @@ if [ ! -f "/system/fonts/opensans_regular.ttf" ]; then
     cp /data/openpilot/installer/bootanimation.zip /system/media/
     mount -o remount,r /system
     
-    echo =================================================================
-    echo =================================================================
-    echo Reboot Now..!!
-    echo =================================================================
+fi
+
+if [ "$(getprop persist.sys.locale)" != "en-US" ]; then
+    setprop persist.sys.locale en-US
+    setprop persist.sys.language en
+    setprop persist.sys.country US
+    setprop persist.sys.timezone America/New_York
+
+    sleep 2
     reboot
 fi
 
