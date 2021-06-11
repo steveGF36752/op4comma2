@@ -1,10 +1,18 @@
 #!/usr/bin/bash
 if [ ! -f "/system/fonts/opensans_regular.ttf" ]; then
-    sleep 3
-    mount -o remount,rw /system
+
+    echo "Installing fonts..."
+
+    mount -o rw,remount /system
+
+  	cp -f /data/openpilot/selfdrive/assets/fonts/opensans_* /system/fonts/
+    cp -f /data/openpilot/selfdrive/assets/fonts.xml /system/etc/fonts.xml
+    chmod 644 /system/etc/fonts.xml
+  	chmod 644 /system/fonts/opensans_*
     
-cp /data/openpilot/installer/bootanimation.zip /system/media/
-mount -o remount,r /system
+    cp /data/openpilot/installer/bootanimation.zip /system/media/
+    mount -o remount,r /system
+    
     echo =================================================================
     echo =================================================================
     echo Reboot Now..!!
