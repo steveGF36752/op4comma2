@@ -15,16 +15,6 @@ if [ ! -f "/system/fonts/opensans_regular.ttf" ]; then
     
 fi
 
-if [ "$(getprop persist.sys.locale)" != "en-US" ]; then
-    setprop persist.sys.locale en-US
-    setprop persist.sys.language en
-    setprop persist.sys.country US
-    setprop persist.sys.timezone America/New_York
-
-    sleep 2
-    reboot
-fi
-
 if [ ! -f "/data/BOOTLOGO" ]; then
     /usr/bin/touch /data/BOOTLOGO
     dd if=/data/openpilot/installer/splash.img of=/dev/block/bootdevice/by-name/splash
