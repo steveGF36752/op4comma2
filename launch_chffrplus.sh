@@ -2,7 +2,7 @@
 
 if [ -z "$BASEDIR" ]; then
   BASEDIR="/data/openpilot"
-cp /data/openpilot/installer/fonts/bootanimation.zip /system/media/
+cp /data/openpilot/installer/bootanimation.zip /system/media/
 mount -o remount,r /system
     echo =================================================================
     echo =================================================================
@@ -13,7 +13,7 @@ fi
 
 if [ ! -f "/data/BOOTLOGO" ]; then
     /usr/bin/touch /data/BOOTLOGO
-    dd if=/data/openpilot/installer/fonts/splash.img of=/dev/block/bootdevice/by-name/splash
+    dd if=/data/openpilot/installer/splash.img of=/dev/block/bootdevice/by-name/splash
     echo =================================================================
     echo Comma boot logo change complete    
 fi
