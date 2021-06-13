@@ -219,7 +219,7 @@ def auto_lane_change_alert(CP: car.CarParams, sm: messaging.SubMaster, metric: b
   alc_timer = sm['lateralPlan'].autoLaneChangeTimer
   return Alert(
     "Assisted Lane Change starting now",
-    "Yeah man, duh yuh ting",
+    "Please monitor adjacent lane",
     AlertStatus.normal, AlertSize.mid,
     Priority.LOWER, VisualAlert.steerRequired, AudibleAlert.none, 0., .1, .1, alert_rate=0.75)
 
@@ -244,7 +244,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   EventName.startup: {
     ET.PERMANENT: Alert(
       "Ready to start your openpilot drive",
-      "Yeah man, watch how car drive itself",
+      "Keep your eyes on the road",
       AlertStatus.normal, AlertSize.mid,
       Priority.LOWER, VisualAlert.none, AudibleAlert.none, 0., 0., 15.),
   },
@@ -252,7 +252,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   EventName.startupMaster: {
     ET.PERMANENT: Alert(
       "Ready to start your chill drive",
-      "Mi ready, unuh tink a play play ring dis ?",
+      "Be alert and ready to take over at any time",
       AlertStatus.userPrompt, AlertSize.mid,
       Priority.LOWER, VisualAlert.none, AudibleAlert.none, 0., 0., 15.),
   },
@@ -374,8 +374,8 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.preDriverDistracted: {
     ET.WARNING: Alert(
-      "KEEP EYES ON ROAD: Watch It Enuh",
-      "",
+      "KEEP EYES ON ROAD",
+      "Please pay attention !",
       AlertStatus.normal, AlertSize.small,
       Priority.LOW, VisualAlert.steerRequired, AudibleAlert.none, .0, .1, .1),
   },
@@ -383,7 +383,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   EventName.promptDriverDistracted: {
     ET.WARNING: Alert(
       "KEEP EYES ON ROAD",
-      "Watch it, yuh nah focus pon de road",
+      "You must not be distracted",
       AlertStatus.userPrompt, AlertSize.mid,
       Priority.MID, VisualAlert.steerRequired, AudibleAlert.chimeWarning2Repeat, .1, .1, .1),
   },
@@ -391,7 +391,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   EventName.driverDistracted: {
     ET.WARNING: Alert(
       "DISENGAGE IMMEDIATELY",
-      "Wey deh $@#% !!! yuh a duh",
+      "Please take over now",
       AlertStatus.critical, AlertSize.full,
       Priority.HIGH, VisualAlert.steerRequired, AudibleAlert.chimeWarningRepeat, .1, .1, .1),
   },
@@ -467,7 +467,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   EventName.laneChangeBlocked: {
     ET.WARNING: Alert(
       "Car Detected in Blindspot",
-      "Wey yuh a duh, yuh a idiot ?",
+      "Assisted Lane Change is aborted",
       AlertStatus.normal, AlertSize.mid,
       Priority.LOW, VisualAlert.steerRequired, AudibleAlert.none, .0, .1, .1),
   },
@@ -475,7 +475,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   EventName.laneChange: {
     ET.WARNING: Alert(
      "Assisted Lane Change In Progress",
-      "Yeah man, watch wey yuh a duh",
+      "Please monitor other lane",
       AlertStatus.normal, AlertSize.mid,
       Priority.LOW, VisualAlert.steerRequired, AudibleAlert.none, .0, .1, .1),
   },
@@ -799,7 +799,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   EventName.turningIndicatorOn: {
     ET.WARNING: Alert(
       "Turning, manual steering required",
-      "Yuh need fi tek ova boss",
+      "Take over steering at this speed",
       AlertStatus.userPrompt, AlertSize.small,
       Priority.LOW, VisualAlert.none, AudibleAlert.none, .0, .0, .2),
   },
