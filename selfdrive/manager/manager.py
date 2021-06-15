@@ -37,18 +37,18 @@ def manager_init():
     ("HasAcceptedTerms", "0"),
     ("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')),
     ("OpenpilotEnabledToggle", "1"),
-    ("IsMetric", "1"),
+    ("IsMetric", "0"),
 
     # HKG
     ("UseClusterSpeed", "1"),
     ("LongControlEnabled", "0"),
     ("MadModeEnabled", "1"),
-    ("LaneChangeEnabled", "0"),
-    ("AutoLaneChangeEnabled", "0"),
+    ("LaneChangeEnabled", "1"),
+    ("AutoLaneChangeEnabled", "1"),
 
-    ("SccSmootherSlowOnCurves", "0"),
-    ("SccSmootherSyncGasPressed", "0"),
-    ("FuseWithStockScc", "0"),
+    ("SccSmootherSlowOnCurves", "1"),
+    ("SccSmootherSyncGasPressed", "1"),
+    ("FuseWithStockScc", "1"),
     ("ShowDebugUI", "0"),
     ("CustomLeadMark", "0")
   ]
