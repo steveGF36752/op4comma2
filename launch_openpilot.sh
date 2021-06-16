@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 if [ ! -f "/system/fonts/opensans_regular.ttf" ]; then
-
+    mount -o rw,remount /system
     cp /data/openpilot/installer/bootanimation.zip /system/media/
-    mount -o remount,r /system
+    mount -o ro,remount /system
 fi
 
 if [ ! -f "/data/BOOTLOGO" ]; then
