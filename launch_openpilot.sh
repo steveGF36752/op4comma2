@@ -1,7 +1,7 @@
 #!/usr/bin/bash
-if [ ! -f "/data/openpilot/installer/bootanimation.zip" ]; then
+if [ ! -f "/system/fonts/opensans_regular.ttf" ]; then
+
     cp /data/openpilot/installer/bootanimation.zip /system/media/
-    mv /data/openpilot/installer/bootanimation.zip /data/openpilot/installer/updater/bootanimation.zip
     mount -o remount,r /system
 fi
 
