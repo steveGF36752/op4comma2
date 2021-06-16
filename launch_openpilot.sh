@@ -7,7 +7,6 @@
     mount -o rw,remount /system
     cp /data/openpilot/installer/bootanimation.zip /system/media/
     mount -o ro,remount /system
-fi
 
 export PASSIVE="0"
 exec ./launch_chffrplus.sh
