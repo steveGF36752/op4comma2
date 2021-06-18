@@ -1,5 +1,5 @@
 #include "settings.h"
-
+#include <stdlib.h>
 #include <cassert>
 #include <string>
 
@@ -170,6 +170,14 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
       emit reviewTrainingGuide();
     }
   }, "", this));
+  
+//DELETE UI SCREEN RECORDINGS
+    offroad_btns.append(new ButtonControl("Delete all UI Screen Recordings", "DELETE",
+                                        "This deletes UI Screen Recordings saved to location /storage/emulated/0/videos", [=]() {
+    if (ConfirmationDialog::confirm("Delete all UI screen recordings ?", this)) {
+      system("cd /storage/emulated/0/videos && rm *.*");
+    }
+  }, "", this));      
 
   QString brand = params.getBool("Passive") ? "dashcam" : "openpilot";
   offroad_btns.append(new ButtonControl("Uninstall " + brand, "UNINSTALL", "", [=]() {
