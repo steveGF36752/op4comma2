@@ -171,10 +171,10 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
     }
   }, "", this));
   
-//DELETE UI SCREEN RECORDINGS
-    offroad_btns.append(new ButtonControl("Delete all UI Screen Recordings", "DELETE",
-                                        "This deletes UI Screen Recordings saved to location /storage/emulated/0/videos", [=]() {
-    if (ConfirmationDialog::confirm("Delete all UI screen recordings ?", this)) {
+//DELETE DASHCAM RECORDINGS
+    offroad_btns.append(new ButtonControl("Delete all Dashcam Recordings", "DELETE",
+                                        "This deletes Dashcam Video Recordings", [=]() {
+    if (ConfirmationDialog::confirm("Delete all dashcam recordings ?", this)) {
       system("cd /storage/emulated/0/videos && rm *.*");
     }
   }, "", this));      
