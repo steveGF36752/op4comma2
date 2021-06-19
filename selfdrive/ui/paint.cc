@@ -862,18 +862,6 @@ static void ui_draw_vision_speed(UIState *s) {
   }
 }
 
-static void ui_draw_vision_event(UIState *s) {
-  if ((*s->sm)["controlsState"].getControlsState().getEngageable()) {
-    // draw steering wheel
-    const int radius = 96;
-    const int center_x = s->viz_rect.right() - radius - bdr_s * 2;
-    const int center_y = s->viz_rect.y + radius  + (bdr_s * 1.5);
-    const QColor &color = bg_colors[s->status];
-    NVGcolor nvg_color = nvgRGBA(color.red(), color.green(), color.blue(), color.alpha());
-    ui_draw_circle_image(s, center_x, center_y, radius, "wheel", nvg_color, 1.0f);
-  }
-}
-
 static void ui_draw_vision_face(UIState *s) {
   const int radius = 96;
   const int center_x = s->viz_rect.x + radius + (bdr_s * 2);
@@ -915,7 +903,7 @@ static void ui_draw_tpms(UIState *s) {
   int viz_tpms_w = 240;
   int viz_tpms_h = 160;
   int viz_tpms_x = s->viz_rect.x + s->viz_rect.w - 270;
-  int viz_tpms_y = s->viz_rect.x + 800;
+  int viz_tpms_y = s->viz_rect.x + 700;
   char tpmsFl[32];
   char tpmsFr[32];
   char tpmsRl[32];
@@ -926,7 +914,7 @@ static void ui_draw_tpms(UIState *s) {
   ui_draw_rect(s->vg, rect, COLOR_WHITE_ALPHA(80), 5, 20);
   nvgTextAlign(s->vg, NVG_ALIGN_CENTER | NVG_ALIGN_BASELINE);
   const int pos_x = viz_tpms_x + (viz_tpms_w / 2);
-  const int pos_y = 855;
+  const int pos_y = 655;
   const int pos_add = 50;
   const int fontsize = 60;
 
@@ -1119,7 +1107,6 @@ void ui_nvg_init(UIState *s) {
 
   // init images
   std::vector<std::pair<const char *, const char *>> images = {
-    {"wheel", "../assets/img_chffr_wheel.png"},
     {"driver_face", "../assets/img_driver_face.png"},
     {"bsd_l", "../assets/img_bsd_l.png"},
     {"bsd_r", "../assets/img_bsd_r.png"},
