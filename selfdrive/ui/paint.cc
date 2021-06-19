@@ -904,14 +904,14 @@ static void ui_draw_vision_face(UIState *s) {
 	
 }
 static void ui_draw_vision_bsd_left(UIState *s) {
-  const int radius = 110;
+  const int radius = 100;
   const int bsd_x = (s->viz_rect.x + radius + (bdr_s*25));
   const int bsd_y = (s->viz_rect.bottom() - footer_h * 2.0);
   ui_draw_circle_image(s, bsd_x, bsd_y - (radius*2), radius, "bsd_l", s->scene.car_state.getLeftBlindspot());
 }
 
 static void ui_draw_vision_bsd_right(UIState *s) {
-  const int radius = 110;
+  const int radius = 100;
   const int bsd_x = (s->viz_rect.x + radius + (bdr_s*52));
   const int bsd_y = (s->viz_rect.bottom() - footer_h * 2.0);
   ui_draw_circle_image(s, bsd_x + (radius*2), bsd_y - (radius*2), radius, "bsd_r", s->scene.car_state.getRightBlindspot());
@@ -927,10 +927,67 @@ static void ui_draw_vision_header(UIState *s) {
 
   ui_draw_vision_maxspeed(s);
   ui_draw_vision_speed(s);
-  //ui_draw_vision_event(s);
+  ui_draw_vision_event(s);
   bb_ui_draw_UI(s);
   ui_draw_extras(s);
 }
+
+static void ui_draw_tpms(UIState *s) {
+  int viz_tpms_w = 240;
+  int viz_tpms_h = 160;
+  int viz_tpms_x = s->viz_rect.x + s->viz_rect.w - 270;
+  int viz_tpms_y = s->viz_rect.x + 875;
+  char tpmsFl[32];
+  char tpmsFr[32];
+  char tpmsRl[32];
+  char tpmsRr[32];
+
+  // Draw Border
+  const Rect rect = {viz_tpms_x, viz_tpms_y, viz_tpms_w, viz_tpms_h};
+  ui_draw_rect(s->vg, rect, COLOR_WHITE_ALPHA(80), 5, 20);
+  nvgTextAlign(s->vg, NVG_ALIGN_CENTER | NVG_ALIGN_BASELINE);
+  const int pos_x = viz_tpms_x + (viz_tpms_w / 2);
+  const int pos_y = 985;
+  const int pos_add = 50;
+  const int fontsize = 60;
+
+  ui_draw_text(s, pos_x, pos_y+pos_add, "TPMS (psi)", fontsize-20, COLOR_WHITE_ALPHA(200), "sans-regular");
+  snprintf(tpmsFl, sizeof(tpmsFl), "%.0f", s->scene.tpmsFl);
+  snprintf(tpmsFr, sizeof(tpmsFr), "%.0f", s->scene.tpmsFr);
+  snprintf(tpmsRl, sizeof(tpmsRl), "%.0f", s->scene.tpmsRl);
+  snprintf(tpmsRr, sizeof(tpmsRr), "%.0f", s->scene.tpmsRr);
+
+  if (s->scene.tpmsFl < 34) {
+    ui_draw_text(s, pos_x - pos_add, pos_y-pos_add, tpmsFl, fontsize, COLOR_RED_ALPHA(200), "sans-bold");
+  } else if (s->scene.tpmsFl > 50) {
+    ui_draw_text(s, pos_x - pos_add, pos_y-pos_add, "-", fontsize, COLOR_WHITE_ALPHA(200), "sans-semibold");
+  } else {
+    ui_draw_text(s, pos_x - pos_add, pos_y-pos_add, tpmsFl, fontsize, COLOR_WHITE_ALPHA(200), "sans-semibold");
+  }
+  if (s->scene.tpmsFr < 34) {
+    ui_draw_text(s, pos_x + pos_add, pos_y-pos_add, tpmsFr, fontsize, COLOR_RED_ALPHA(200), "sans-bold");
+  } else if (s->scene.tpmsFr > 50) {
+    ui_draw_text(s, pos_x + pos_add, pos_y-pos_add, "-", fontsize, COLOR_WHITE_ALPHA(200), "sans-semibold");
+  } else {
+    ui_draw_text(s, pos_x + pos_add, pos_y-pos_add, tpmsFr, fontsize, COLOR_WHITE_ALPHA(200), "sans-semibold");
+  }
+  if (s->scene.tpmsRl < 34) {
+    ui_draw_text(s, pos_x - pos_add, pos_y, tpmsRl, fontsize, COLOR_RED_ALPHA(200), "sans-bold");
+  } else if (s->scene.tpmsRl > 50) {
+    ui_draw_text(s, pos_x - pos_add, pos_y, "-", fontsize, COLOR_WHITE_ALPHA(200), "sans-semibold");
+  } else {
+    ui_draw_text(s, pos_x - pos_add, pos_y, tpmsRl, fontsize, COLOR_WHITE_ALPHA(200), "sans-semibold");
+  }
+  if (s->scene.tpmsRr < 34) {
+    ui_draw_text(s, pos_x + pos_add, pos_y, tpmsRr, fontsize, COLOR_RED_ALPHA(200), "sans-bold");
+  } else if (s->scene.tpmsRr > 50) {
+    ui_draw_text(s, pos_x + pos_add, pos_y, "-", fontsize, COLOR_WHITE_ALPHA(200), "sans-semibold");
+  } else {
+    ui_draw_text(s, pos_x + pos_add, pos_y, tpmsRr, fontsize, COLOR_WHITE_ALPHA(200), "sans-semibold");
+  }
+}
+
+//END: functions added for the display of various items
 
 static void ui_draw_vision_frame(UIState *s) {
   // Draw video frames
@@ -951,10 +1008,15 @@ static void ui_draw_vision(UIState *s) {
   }
   // Set Speed, Current Speed, Status/Events
   ui_draw_vision_header(s);
-  ui_draw_vision_brake(s);
-  ui_draw_vision_autohold(s);
-  ui_draw_vision_bsd_left(s);
-  ui_draw_vision_bsd_right(s);
+  if ((*s->sm)["controlsState"].getControlsState().getAlertSize() == cereal::ControlsState::AlertSize::NONE) {
+    ui_draw_vision_face(s);
+    ui_draw_vision_brake(s);
+    ui_draw_vision_autohold(s);
+    ui_draw_vision_bsd_left(s);
+    ui_draw_vision_bsd_right(s);
+    ui_draw_tpms(s);
+    bb_ui_draw_UI(s);
+  }
 }
 
 static void ui_draw_background(UIState *s) {
