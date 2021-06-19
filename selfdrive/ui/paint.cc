@@ -883,18 +883,6 @@ static void ui_draw_vision_speed(UIState *s) {
   }
 }
 
-static void ui_draw_vision_event(UIState *s) {
-  if ((*s->sm)["controlsState"].getControlsState().getEngageable()) {
-    // draw steering wheel
-    const int radius = 96;
-    const int center_x = s->viz_rect.right() - radius - bdr_s * 2;
-    const int center_y = s->viz_rect.y + radius  + (bdr_s * 1.5);
-    const QColor &color = bg_colors[s->status];
-    NVGcolor nvg_color = nvgRGBA(color.red(), color.green(), color.blue(), color.alpha());
-    ui_draw_circle_image(s, center_x, center_y, radius, "wheel", nvg_color, 1.0f);
-  }
-}
-
 static void ui_draw_vision_face(UIState *s) {
   const int radius = 96;
   const int center_x = s->viz_rect.x + radius + (bdr_s * 2);
