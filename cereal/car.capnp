@@ -133,7 +133,6 @@ struct CarEvent @0x9b1657f34caf3ad3 {
 
     slowingDownSpeed @105;
     slowingDownSpeedSound @106;
-    turningIndicatorOn @107;
   }
 }
 
