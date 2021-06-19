@@ -894,7 +894,7 @@ static void ui_draw_vision_header(UIState *s) {
 
   ui_draw_vision_maxspeed(s);
   ui_draw_vision_speed(s);
-  ui_draw_vision_event(s);
+  //ui_draw_vision_event(s);
   bb_ui_draw_UI(s);
   ui_draw_extras(s);
 }
