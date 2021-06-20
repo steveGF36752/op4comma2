@@ -899,6 +899,7 @@ static void ui_draw_vision_header(UIState *s) {
   ui_draw_extras(s);
 }
 
+ // Draw TPMS Border
 static void ui_draw_tpms(UIState *s) {
   int viz_tpms_w = 240;
   int viz_tpms_h = 160;
@@ -908,13 +909,12 @@ static void ui_draw_tpms(UIState *s) {
   char tpmsFr[32];
   char tpmsRl[32];
   char tpmsRr[32];
-
-  // Draw TPMS Border
+ 
   const Rect rect = {viz_tpms_x, viz_tpms_y, viz_tpms_w, viz_tpms_h};
   ui_draw_rect(s->vg, rect, COLOR_WHITE_ALPHA(80), 5, 20);
   nvgTextAlign(s->vg, NVG_ALIGN_CENTER | NVG_ALIGN_BASELINE);
   const int pos_x = viz_tpms_x + (viz_tpms_w / 2);
-  const int pos_y = 780;
+  const int pos_y = 785;
   const int pos_add = 50;
   const int fontsize = 60;
 
