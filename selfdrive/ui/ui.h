@@ -58,6 +58,7 @@
 #define COLOR_WARNING_ALPHA(x) nvgRGBA(218, 111, 37, x)
 #define COLOR_ENGAGEABLE nvgRGBA(23, 51, 73, 255)
 #define COLOR_ENGAGEABLE_ALPHA(x) nvgRGBA(23, 51, 73, x)
+#define COLOR_GREEN_ALPHA(x) nvgRGBA(0, 153, 51, x)
 
 // TODO: this is also hardcoded in common/transformations/camera.py
 // TODO: choose based on frame input size
