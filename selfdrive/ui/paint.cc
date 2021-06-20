@@ -903,7 +903,7 @@ static void ui_draw_vision_header(UIState *s) {
 static void ui_draw_tpms(UIState *s) {
   int viz_tpms_w = 200;
   int viz_tpms_h = 160;
-  int viz_tpms_x = s->viz_rect.x + s->viz_rect.w - 270;
+  int viz_tpms_x = s->viz_rect.x + s->viz_rect.w - 290;
   int viz_tpms_y = s->viz_rect.x + 670;
   char tpmsFl[32];
   char tpmsFr[32];
