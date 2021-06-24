@@ -16,7 +16,7 @@ SCC smoother, improve stock scc
 
 SCC sync set speed on gas press, set your scc speed to the car current speed by using use of the gas pedal.
 
-Color Tire Pressure Monitor Sysyem (TPMS) psi display
+Color Tire Pressure Monitor System (TPMS) psi display
 
 Screen recording from ui is saved as 720p mp4 3 min. videos segments to /storage/emulated/0/videos.
 
