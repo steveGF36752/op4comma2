@@ -177,7 +177,7 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
     if (ConfirmationDialog::confirm("Delete all dashcam recordings ?", this)) {
       system("cd /storage/emulated/0/videos && rm *.*");
     }
-  }, "", this));  
+  }, "", this));      
 
   QString brand = params.getBool("Passive") ? "dashcam" : "openpilot";
   offroad_btns.append(new ButtonControl("Uninstall " + brand, "UNINSTALL", "", [=]() {
