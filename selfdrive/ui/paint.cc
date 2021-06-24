@@ -924,30 +924,30 @@ static void ui_draw_tpms(UIState *s) {
   snprintf(tpmsRl, sizeof(tpmsRl), "%.0f", s->scene.tpmsRl);
   snprintf(tpmsRr, sizeof(tpmsRr), "%.0f", s->scene.tpmsRr);
 
-  if (s->scene.tpmsFl < 30) {
+  if (s->scene.tpmsFl < 25) {
     ui_draw_text(s, pos_x - pos_add, pos_y-pos_add, tpmsFl, fontsize, nvgRGBA(255, 255, 0, 255), "sans-bold");
-  } else if (s->scene.tpmsFl > 45) {
+  } else if (s->scene.tpmsFl > 50) {
     ui_draw_text(s, pos_x - pos_add, pos_y-pos_add, "-", fontsize, nvgRGBA(255, 66, 66, 255), "sans-semibold");
   } else {
     ui_draw_text(s, pos_x - pos_add, pos_y-pos_add, tpmsFl, fontsize, nvgRGBA(102, 255, 51, 255), "sans-semibold");
   }
-  if (s->scene.tpmsFr < 30) {
+  if (s->scene.tpmsFr < 25) {
     ui_draw_text(s, pos_x + pos_add, pos_y-pos_add, tpmsFr, fontsize, nvgRGBA(255, 255, 0, 255), "sans-bold");
-  } else if (s->scene.tpmsFr > 45) {
+  } else if (s->scene.tpmsFr > 50) {
     ui_draw_text(s, pos_x + pos_add, pos_y-pos_add, "-", fontsize, nvgRGBA(255, 66, 66, 255), "sans-semibold");
   } else {
     ui_draw_text(s, pos_x + pos_add, pos_y-pos_add, tpmsFr, fontsize, nvgRGBA(102, 255, 51, 255), "sans-semibold");
   }
-  if (s->scene.tpmsRl < 30) {
+  if (s->scene.tpmsRl < 25) {
     ui_draw_text(s, pos_x - pos_add, pos_y, tpmsRl, fontsize, nvgRGBA(255, 255, 0, 255), "sans-bold");
-  } else if (s->scene.tpmsRl > 45) {
+  } else if (s->scene.tpmsRl > 50) {
     ui_draw_text(s, pos_x - pos_add, pos_y, "-", fontsize, nvgRGBA(255, 66, 66, 255), "sans-semibold");
   } else {
     ui_draw_text(s, pos_x - pos_add, pos_y, tpmsRl, fontsize, nvgRGBA(102, 255, 51, 255), "sans-semibold");
   }
-  if (s->scene.tpmsRr < 30) {
+  if (s->scene.tpmsRr < 25) {
     ui_draw_text(s, pos_x + pos_add, pos_y, tpmsRr, fontsize, nvgRGBA(255, 255, 0, 255), "sans-bold");
-  } else if (s->scene.tpmsRr > 45) {
+  } else if (s->scene.tpmsRr > 50) {
     ui_draw_text(s, pos_x + pos_add, pos_y, "-", fontsize, nvgRGBA(255, 66, 66, 255), "sans-semibold");
   } else {
     ui_draw_text(s, pos_x + pos_add, pos_y, tpmsRr, fontsize, nvgRGBA(102, 255, 51, 255), "sans-semibold");
