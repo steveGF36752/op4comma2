@@ -16,7 +16,11 @@ SCC smoother, improve stock scc
 
 SCC sync set speed on gas press, set your scc speed to the car current speed by using use of the gas pedal.
 
-Screen recording from ui is saved as 720p mp4 3 min. videos segments to /storage/emulated/0/videos, .
+Color Tire Pressure Monitor Sysyem (TPMS) psi display
+
+Screen recording from ui is saved as 720p mp4 3 min. videos segments to /storage/emulated/0/videos.
+
+Option to delete UI screen recordings under Device
 
 All custom setting toggle are found in community menu 
 
