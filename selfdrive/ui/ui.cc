@@ -137,8 +137,11 @@ static void update_state(UIState *s) {
     }
     scene.leftBlinker = scene.car_state.getLeftBlinker();
     scene.rightBlinker = scene.car_state.getRightBlinker();
+    scene.tpmsFl = scene.car_state.getTpmsFl();
+    scene.tpmsFr = scene.car_state.getTpmsFr();
+    scene.tpmsRl = scene.car_state.getTpmsRl();
+    scene.tpmsRr = scene.car_state.getTpmsRr();
   }
-
   if (sm.updated("radarState")) {
     std::optional<cereal::ModelDataV2::XYZTData::Reader> line;
     if (sm.rcv_frame("modelV2") > 0) {
