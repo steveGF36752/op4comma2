@@ -129,7 +129,24 @@ static void update_sockets(UIState *s){
 static void update_state(UIState *s) {
   SubMaster &sm = *(s->sm);
   UIScene &scene = s->scene;
-	
+  // update engageability and DM icons at 2Hz
+  if (sm.frame % (UI_FREQ / 2) == 0) {
+    scene.engageable = sm["controlsState"].getControlsState().getEngageable();
+    scene.dm_active = sm["driverMonitoringState"].getDriverMonitoringState().getIsActiveMode();
+  }	
+  if (scene.started && sm.updated("controlsState")) {
+    scene.controls_state = sm["controlsState"].getControlsState();
+    scene.lateralControlSelect = scene.controls_state.getLateralControlSelect();
+    if (scene.lateralControlSelect == 0) {
+      scene.output_scale = scene.controls_state.getLateralControlState().getPidState().getOutput();
+    } else if (scene.lateralControlSelect == 1) {
+      scene.output_scale = scene.controls_state.getLateralControlState().getIndiState().getOutput();
+    } else if (s->scene.lateralControlSelect == 2) {
+      scene.output_scale = scene.controls_state.getLateralControlState().getLqrState().getOutput();
+    } else if (s->scene.lateralControlSelect == 3) {
+      scene.output_scale = scene.controls_state.getLateralControlState().getAngleState().getOutput();
+    }
+  }	
   if (sm.updated("carState")) {
     scene.car_state = sm["carState"].getCarState();
     if(scene.leftBlinker!=scene.car_state.getLeftBlinker() || scene.rightBlinker!=scene.car_state.getRightBlinker()){
@@ -143,11 +160,6 @@ static void update_state(UIState *s) {
     scene.tpmsRr = scene.car_state.getTpmsRr();
   }
 	
-  // update engageability and DM icons at 2Hz
-  if (sm.frame % (UI_FREQ / 2) == 0) {
-    scene.engageable = sm["controlsState"].getControlsState().getEngageable();
-    scene.dm_active = sm["driverMonitoringState"].getDriverMonitoringState().getIsActiveMode();
-  }
   if (sm.updated("radarState")) {
     std::optional<cereal::ModelDataV2::XYZTData::Reader> line;
     if (sm.rcv_frame("modelV2") > 0) {
