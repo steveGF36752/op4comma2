@@ -113,7 +113,7 @@ typedef struct UIScene {
   bool leftblindspot, rightblindspot;
   int blinker_blinkingrate;
   float tpmsFl, tpmsFr, tpmsRl, tpmsRr;
-
+  float output_scale;
   cereal::PandaState::PandaType pandaType;
 
   cereal::DeviceState::Reader deviceState;
