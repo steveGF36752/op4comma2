@@ -228,6 +228,31 @@ static void ui_draw_vision_lane_lines(UIState *s) {
                                           COLOR_RED_ALPHA(180), COLOR_RED_ALPHA(0));
   }
   // paint path
+  int steerOverride = s->scene.car_state.getSteeringPressed();
+  NVGpaint track_bg;
+  if (s->scene.controls_state.getEnabled()) {
+  // Draw colored track
+    if (steerOverride) {
+      track_bg = nvgLinearGradient(s->vg, s->fb_w, s->fb_h, s->fb_w, s->fb_h*.4,
+                                   COLOR_ENGAGEABLE, COLOR_ENGAGEABLE_ALPHA(120));
+    } else if (scene.end_to_end) {
+      track_bg = nvgLinearGradient(s->vg, s->fb_w, s->fb_h, s->fb_w, s->fb_h*.4,
+                                   COLOR_RED, COLOR_RED_ALPHA(120));
+    } else {
+      // color track with output scale
+      int torque_scale = (int)fabs(510*(float)s->scene.output_scale);
+      int red_lvl = fmin(255, torque_scale);
+      int green_lvl = fmin(255, 510-torque_scale);
+      track_bg = nvgLinearGradient(s->vg, s->fb_w, s->fb_h, s->fb_w, s->fb_h*.4,
+        nvgRGBA(          red_lvl,            green_lvl,  0, 255),
+        nvgRGBA((int)(0.5*red_lvl), (int)(0.5*green_lvl), 0, 50));
+    }	
+  } else {
+    // Draw white vision track
+    track_bg = nvgLinearGradient(s->vg, s->fb_w, s->fb_h, s->fb_w, s->fb_h*.4,
+                                 COLOR_WHITE, COLOR_WHITE_ALPHA(120));
+  }
+  // paint path
   ui_draw_line(s, scene.track_vertices, nullptr, &track_bg);
 }
 
