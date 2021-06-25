@@ -234,70 +234,7 @@ class CarInterface(CarInterfaceBase):
       tire_stiffness_factor = 0.8
 
     ret.radarTimeStep = 0.05
-    # -----------------------------------------------------------------
-    if Params().get("LateralControlSelect", encoding='utf8') == "0":
-      if candidate in [CAR.GENESIS, CAR.GENESIS_G70, CAR.GENESIS_G80, CAR.GENESIS_G90]:
-          ret.lateralTuning.pid.kf = 0.00005
-          ret.lateralTuning.pid.kpBP = [0.]
-          ret.lateralTuning.pid.kpV = [0.16]
-          ret.lateralTuning.pid.kiBP = [0.]
-          ret.lateralTuning.pid.kiV = [0.01]
-      elif candidate == CAR.PALISADE:
-          ret.lateralTuning.pid.kf = 0.00005
-          ret.lateralTuning.pid.kpBP = [0.]
-          ret.lateralTuning.pid.kpV = [0.3]
-          ret.lateralTuning.pid.kiBP = [0.]
-          ret.lateralTuning.pid.kiV = [0.05]
-      else:
-          ret.lateralTuning.pid.kf = 0.00005
-          ret.lateralTuning.pid.kpBP = [0.]
-          ret.lateralTuning.pid.kpV = [0.25]
-          ret.lateralTuning.pid.kiBP = [0.]
-          ret.lateralTuning.pid.kiV = [0.05]
-# -----------------------------------------------------------------
-    elif Params().get("LateralControlSelect", encoding='utf8') == "1":
-      if candidate in [CAR.GENESIS]:
-          ret.lateralTuning.init('indi')
-          ret.lateralTuning.indi.innerLoopGainBP = [0.]
-          ret.lateralTuning.indi.innerLoopGainV = [3.5]
-          ret.lateralTuning.indi.outerLoopGainBP = [0.]
-          ret.lateralTuning.indi.outerLoopGainV = [2.0]
-          ret.lateralTuning.indi.timeConstantBP = [0.]
-          ret.lateralTuning.indi.timeConstantV = [1.4]
-          ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
-          ret.lateralTuning.indi.actuatorEffectivenessV = [2.3]
-      elif candidate in [CAR.GENESIS_G70]:
-          ret.lateralTuning.init('indi')
-          ret.lateralTuning.indi.innerLoopGainBP = [0.]
-          ret.lateralTuning.indi.innerLoopGainV = [2.5]
-          ret.lateralTuning.indi.outerLoopGainBP = [0.]
-          ret.lateralTuning.indi.outerLoopGainV = [3.5]
-          ret.lateralTuning.indi.timeConstantBP = [0.]
-          ret.lateralTuning.indi.timeConstantV = [1.4]
-          ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
-          ret.lateralTuning.indi.actuatorEffectivenessV = [1.8]
-      elif candidate == CAR.SELTOS:
-          ret.lateralTuning.init('indi')
-          ret.lateralTuning.indi.innerLoopGainBP = [0.]
-          ret.lateralTuning.indi.innerLoopGainV = [4.]
-          ret.lateralTuning.indi.outerLoopGainBP = [0.]
-          ret.lateralTuning.indi.outerLoopGainV = [3.]
-          ret.lateralTuning.indi.timeConstantBP = [0.]
-          ret.lateralTuning.indi.timeConstantV = [1.4]
-          ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
-          ret.lateralTuning.indi.actuatorEffectivenessV = [1.8]
-      else:
-          ret.lateralTuning.init('indi')
-          ret.lateralTuning.indi.innerLoopGainBP = [0.]
-          ret.lateralTuning.indi.innerLoopGainV = [3.5]
-          ret.lateralTuning.indi.outerLoopGainBP = [0.]
-          ret.lateralTuning.indi.outerLoopGainV = [2.0]
-          ret.lateralTuning.indi.timeConstantBP = [0.]
-          ret.lateralTuning.indi.timeConstantV = [1.4]
-          ret.lateralTuning.indi.actuatorEffectivenessBP = [0.]
-          ret.lateralTuning.indi.actuatorEffectivenessV = [2.3]
-# -----------------------------------------------------------------
-
+  
     # TODO: get actual value, for now starting with reasonable value for
     # civic and scaling by mass and wheelbase
     ret.rotationalInertia = scale_rot_inertia(ret.mass, ret.wheelbase)
@@ -306,7 +243,6 @@ class CarInterface(CarInterfaceBase):
     # mass and CG position, so all cars will have approximately similar dyn behaviors
     ret.tireStiffnessFront, ret.tireStiffnessRear = scale_tire_stiffness(ret.mass, ret.wheelbase, ret.centerToFront,
                                                                          tire_stiffness_factor=tire_stiffness_factor)
-
     # no rear steering, at least on the listed cars above
     ret.steerRatioRear = 0.
     ret.steerControlType = car.CarParams.SteerControlType.torque
