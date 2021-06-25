@@ -552,7 +552,6 @@ struct ControlsState @0x97ff69c53601abf1 {
   steerRatio @67 :Float32;
   steerRateCost @68 :Float32;
   steerActuatorDelay @69 :Float32;
-  lateralControlSelect  @70 :UInt8;
 
   lateralControlState :union {
     indiState @52 :LateralINDIState;
