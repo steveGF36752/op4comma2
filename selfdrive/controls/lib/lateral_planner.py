@@ -98,24 +98,7 @@ class LateralPlanner():
     v_ego = sm['carState'].vEgo
     active = sm['controlsState'].active
     measured_curvature = sm['controlsState'].curvature
-  def update(self, sm, CP):
-    try:
-      lateral_control_select = 0
-      lateral_control_select = int(sm['controlsState'].lateralControlSelect)
-      if lateral_control_select == 0:
-        self.output_scale = sm['controlsState'].lateralControlState.pidState.output
-      elif lateral_control_select == 1:
-        self.output_scale = sm['controlsState'].lateralControlState.indiState.output
-      elif lateral_control_select == 2:
-        self.output_scale = sm['controlsState'].lateralControlState.lqrState.output
-      elif lateral_control_select == 3:
-        self.output_scale = sm['controlsState'].lateralControlState.angleState.output
-    except:
-      pass
-    v_ego = sm['carState'].vEgo
-    active = sm['controlsState'].active
-    measured_curvature = sm['controlsState'].curvature    
-
+    
     md = sm['modelV2']
     self.LP.parse_model(sm['modelV2'])
     if len(md.position.x) == TRAJECTORY_SIZE and len(md.orientation.x) == TRAJECTORY_SIZE:
