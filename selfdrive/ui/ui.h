@@ -51,8 +51,14 @@
 #define COLOR_WHITE nvgRGBA(255, 255, 255, 255)
 #define COLOR_WHITE_ALPHA(x) nvgRGBA(255, 255, 255, x)
 #define COLOR_RED_ALPHA(x) nvgRGBA(201, 34, 49, x)
-#define COLOR_YELLOW nvgRGBA(218, 202, 37, 255)
+#define COLOR_YELLOW nvgRGBA(255, 255, 0, 255)
 #define COLOR_RED nvgRGBA(201, 34, 49, 255)
+#define COLOR_ENGAGED_ALPHA(x) nvgRGBA(23, 134, 68, x)
+#define COLOR_WARNING nvgRGBA(218, 111, 37, 255)
+#define COLOR_WARNING_ALPHA(x) nvgRGBA(218, 111, 37, x)
+#define COLOR_ENGAGEABLE nvgRGBA(23, 51, 73, 255)
+#define COLOR_ENGAGEABLE_ALPHA(x) nvgRGBA(23, 51, 73, x)
+#define COLOR_GREEN_ALPHA(x) nvgRGBA(0, 153, 51, x)
 
 // TODO: this is also hardcoded in common/transformations/camera.py
 // TODO: choose based on frame input size
@@ -103,8 +109,17 @@ typedef struct UIScene {
 
   mat3 view_from_calib;
   bool world_objects_visible;
+  bool leftBlinker, rightBlinker;
+  bool leftblindspot, rightblindspot;
+  int blinker_blinkingrate;
+  float tpmsFl, tpmsFr, tpmsRl, tpmsRr;
 
   cereal::PandaState::PandaType pandaType;
+
+  cereal::DeviceState::Reader deviceState;
+  cereal::RadarState::LeadData::Reader lead_data[2];
+  cereal::CarState::Reader car_state;
+  cereal::ControlsState::Reader controls_state;
 
   // gps
   int satelliteCount;
