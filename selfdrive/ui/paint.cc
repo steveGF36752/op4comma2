@@ -956,7 +956,7 @@ static void ui_draw_vision_header(UIState *s) {
   ui_draw_extras(s);
 }
 
- // Draw TPMS Border
+ // Draw TPMS display
 static void ui_draw_tpms(UIState *s) {
   int viz_tpms_w = 200;
   int viz_tpms_h = 160;
