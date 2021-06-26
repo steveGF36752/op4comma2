@@ -904,7 +904,7 @@ static void ui_draw_tpms(UIState *s) {
   int viz_tpms_w = 200;
   int viz_tpms_h = 160;
   int viz_tpms_x = s->viz_rect.x + s->viz_rect.w - 230;
-  int viz_tpms_y = s->viz_rect.x + 673;
+  int viz_tpms_y = s->viz_rect.x + 677;
   char tpmsFl[32];
   char tpmsFr[32];
   char tpmsRl[32];
@@ -914,7 +914,7 @@ static void ui_draw_tpms(UIState *s) {
   ui_draw_rect(s->vg, rect, COLOR_WHITE_ALPHA(80), 5, 20);
   nvgTextAlign(s->vg, NVG_ALIGN_CENTER | NVG_ALIGN_BASELINE);
   const int pos_x = viz_tpms_x + (viz_tpms_w / 2);
-  const int pos_y = 790;
+  const int pos_y = 795;
   const int pos_add = 50;
   const int fontsize = 75;
 
