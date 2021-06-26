@@ -606,54 +606,7 @@ static void bb_ui_draw_measures_right(UIState *s, int bb_x, int bb_y, int bb_w )
         value_fontSize, label_fontSize, uom_fontSize );
     bb_ry = bb_y + bb_h;
   }
-	
-// add tpms display
-static void ui_draw_tpms(UIState *s) {
-  int viz_tpms_w = 200;
-  int viz_tpms_h = 160;
-  int viz_tpms_x = s->viz_rect.x + s->viz_rect.w - 230;
-  int viz_tpms_y = s->viz_rect.x + 676;
-  char tpmsFl[32];
-  char tpmsFr[32];
-  char tpmsRl[32];
-  char tpmsRr[32];
 
-  ui_draw_text(s, pos_x, pos_y+pos_add, "TPMS (psi)", fontsize-20, COLOR_WHITE_ALPHA(200), "sans-regular");
-  snprintf(tpmsFl, sizeof(tpmsFl), "%.0f", s->scene.tpmsFl);
-  snprintf(tpmsFr, sizeof(tpmsFr), "%.0f", s->scene.tpmsFr);
-  snprintf(tpmsRl, sizeof(tpmsRl), "%.0f", s->scene.tpmsRl);
-  snprintf(tpmsRr, sizeof(tpmsRr), "%.0f", s->scene.tpmsRr);
-
-  if (s->scene.tpmsFl < 25) {
-    ui_draw_text(s, pos_x - pos_add, pos_y-pos_add, tpmsFl, fontsize, nvgRGBA(255, 255, 0, 255), "sans-bold");
-  } else if (s->scene.tpmsFl > 50) {
-    ui_draw_text(s, pos_x - pos_add, pos_y-pos_add, "-", fontsize, nvgRGBA(255, 66, 66, 255), "sans-semibold");
-  } else {
-    ui_draw_text(s, pos_x - pos_add, pos_y-pos_add, tpmsFl, fontsize, nvgRGBA(102, 255, 51, 255), "sans-semibold");
-  }
-  if (s->scene.tpmsFr < 25) {
-    ui_draw_text(s, pos_x + pos_add, pos_y-pos_add, tpmsFr, fontsize, nvgRGBA(255, 255, 0, 255), "sans-bold");
-  } else if (s->scene.tpmsFr > 50) {
-    ui_draw_text(s, pos_x + pos_add, pos_y-pos_add, "-", fontsize, nvgRGBA(255, 66, 66, 255), "sans-semibold");
-  } else {
-    ui_draw_text(s, pos_x + pos_add, pos_y-pos_add, tpmsFr, fontsize, nvgRGBA(102, 255, 51, 255), "sans-semibold");
-  }
-  if (s->scene.tpmsRl < 25) {
-    ui_draw_text(s, pos_x - pos_add, pos_y, tpmsRl, fontsize, nvgRGBA(255, 255, 0, 255), "sans-bold");
-  } else if (s->scene.tpmsRl > 50) {
-    ui_draw_text(s, pos_x - pos_add, pos_y, "-", fontsize, nvgRGBA(255, 66, 66, 255), "sans-semibold");
-  } else {
-    ui_draw_text(s, pos_x - pos_add, pos_y, tpmsRl, fontsize, nvgRGBA(102, 255, 51, 255), "sans-semibold");
-  }
-  if (s->scene.tpmsRr < 25) {
-    ui_draw_text(s, pos_x + pos_add, pos_y, tpmsRr, fontsize, nvgRGBA(255, 255, 0, 255), "sans-bold");
-  } else if (s->scene.tpmsRr > 50) {
-    ui_draw_text(s, pos_x + pos_add, pos_y, "-", fontsize, nvgRGBA(255, 66, 66, 255), "sans-semibold");
-  } else {
-    ui_draw_text(s, pos_x + pos_add, pos_y, tpmsRr, fontsize, nvgRGBA(102, 255, 51, 255), "sans-semibold");
-  }
-}
-	
   //finally draw the frame
   bb_h += 40;
   nvgBeginPath(s->vg);
@@ -1001,6 +954,61 @@ static void ui_draw_vision_header(UIState *s) {
   //ui_draw_vision_event(s);
   bb_ui_draw_UI(s);
   ui_draw_extras(s);
+}
+
+ // Draw TPMS Border
+static void ui_draw_tpms(UIState *s) {
+  int viz_tpms_w = 200;
+  int viz_tpms_h = 160;
+  int viz_tpms_x = s->viz_rect.x + s->viz_rect.w - 230;
+  int viz_tpms_y = s->viz_rect.x + 676;
+  char tpmsFl[32];
+  char tpmsFr[32];
+  char tpmsRl[32];
+  char tpmsRr[32];
+
+  const Rect rect = {viz_tpms_x, viz_tpms_y, viz_tpms_w, viz_tpms_h};
+  ui_draw_rect(s->vg, rect, COLOR_WHITE_ALPHA(80), 5, 20);
+  nvgTextAlign(s->vg, NVG_ALIGN_CENTER | NVG_ALIGN_BASELINE);
+  const int pos_x = viz_tpms_x + (viz_tpms_w / 2);
+  const int pos_y = 795;
+  const int pos_add = 50;
+  const int fontsize = 75;
+
+  ui_draw_text(s, pos_x, pos_y+pos_add, "TPMS (psi)", fontsize-20, COLOR_WHITE_ALPHA(200), "sans-regular");
+  snprintf(tpmsFl, sizeof(tpmsFl), "%.0f", s->scene.tpmsFl);
+  snprintf(tpmsFr, sizeof(tpmsFr), "%.0f", s->scene.tpmsFr);
+  snprintf(tpmsRl, sizeof(tpmsRl), "%.0f", s->scene.tpmsRl);
+  snprintf(tpmsRr, sizeof(tpmsRr), "%.0f", s->scene.tpmsRr);
+
+  if (s->scene.tpmsFl < 25) {
+    ui_draw_text(s, pos_x - pos_add, pos_y-pos_add, tpmsFl, fontsize, nvgRGBA(255, 255, 0, 255), "sans-bold");
+  } else if (s->scene.tpmsFl > 50) {
+    ui_draw_text(s, pos_x - pos_add, pos_y-pos_add, "-", fontsize, nvgRGBA(255, 66, 66, 255), "sans-semibold");
+  } else {
+    ui_draw_text(s, pos_x - pos_add, pos_y-pos_add, tpmsFl, fontsize, nvgRGBA(102, 255, 51, 255), "sans-semibold");
+  }
+  if (s->scene.tpmsFr < 25) {
+    ui_draw_text(s, pos_x + pos_add, pos_y-pos_add, tpmsFr, fontsize, nvgRGBA(255, 255, 0, 255), "sans-bold");
+  } else if (s->scene.tpmsFr > 50) {
+    ui_draw_text(s, pos_x + pos_add, pos_y-pos_add, "-", fontsize, nvgRGBA(255, 66, 66, 255), "sans-semibold");
+  } else {
+    ui_draw_text(s, pos_x + pos_add, pos_y-pos_add, tpmsFr, fontsize, nvgRGBA(102, 255, 51, 255), "sans-semibold");
+  }
+  if (s->scene.tpmsRl < 25) {
+    ui_draw_text(s, pos_x - pos_add, pos_y, tpmsRl, fontsize, nvgRGBA(255, 255, 0, 255), "sans-bold");
+  } else if (s->scene.tpmsRl > 50) {
+    ui_draw_text(s, pos_x - pos_add, pos_y, "-", fontsize, nvgRGBA(255, 66, 66, 255), "sans-semibold");
+  } else {
+    ui_draw_text(s, pos_x - pos_add, pos_y, tpmsRl, fontsize, nvgRGBA(102, 255, 51, 255), "sans-semibold");
+  }
+  if (s->scene.tpmsRr < 25) {
+    ui_draw_text(s, pos_x + pos_add, pos_y, tpmsRr, fontsize, nvgRGBA(255, 255, 0, 255), "sans-bold");
+  } else if (s->scene.tpmsRr > 50) {
+    ui_draw_text(s, pos_x + pos_add, pos_y, "-", fontsize, nvgRGBA(255, 66, 66, 255), "sans-semibold");
+  } else {
+    ui_draw_text(s, pos_x + pos_add, pos_y, tpmsRr, fontsize, nvgRGBA(102, 255, 51, 255), "sans-semibold");
+  }
 }
 
 //END: functions added for the display of various items
