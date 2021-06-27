@@ -957,7 +957,7 @@ static void ui_draw_tpms(UIState *s) {
   const int pos_add = 50;
   const int fontsize = 75;
 
-  ui_draw_text(s, pos_x, pos_y+pos_add, "TPMS (psi)", fontsize-20, COLOR_WHITE_ALPHA(200), "sans-regular");
+  ui_draw_text(s, pos_x, pos_y+pos_add, "TPMS (psi)", fontsize-15, COLOR_WHITE_ALPHA(200), "sans-regular");
   snprintf(tpmsFl, sizeof(tpmsFl), "%.0f", s->scene.tpmsFl);
   snprintf(tpmsFr, sizeof(tpmsFr), "%.0f", s->scene.tpmsFr);
   snprintf(tpmsRl, sizeof(tpmsRl), "%.0f", s->scene.tpmsRl);
