@@ -32,7 +32,7 @@ class Api():
       token = token.decode('utf8')
     return token
     
-
+//add retropilot sever
 def api_get(endpoint, method='GET', timeout=None, access_token=None, **params):
   backend = "https://api.retropilot.org/"
 
