@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from common.basedir import PERSIST
 from selfdrive.version import version
 
+
 class Api():
   def __init__(self, dongle_id):
     self.dongle_id = dongle_id
@@ -31,8 +32,7 @@ class Api():
     if isinstance(token, bytes):
       token = token.decode('utf8')
     return token
-    
-//add retropilot sever
+
 def api_get(endpoint, method='GET', timeout=None, access_token=None, **params):
   backend = "https://api.retropilot.org/"
 
