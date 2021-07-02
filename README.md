@@ -8,7 +8,9 @@ Hkg Long control is radar + vision
 
 Slow down for curves (BETA)
 
-MAD mode (ON by default) for no disengae on brake or gas, this will disable all logging and uploads, use the cruise button ta actvate.
+MAD mode (ON by default) for no disengae on brake or gas, this will disable all logging and uploads, use the cruise button ta actvate. 
+
+Retropilot Server Ready
 
 Auto Lane Change with Blind spot monitoring (No Nudge)
 
@@ -21,6 +23,8 @@ Color Tire Pressure Monitor System (TPMS) psi display
 Screen recording from ui is saved as 720p mp4 3 min. videos segments to /storage/emulated/0/videos.
 
 Option to delete UI screen recordings under Device
+
+Smart MDPS support for steering down to 0mph, hot toggle option, no reboot required
 
 All custom setting toggle are found in community menu 
 
