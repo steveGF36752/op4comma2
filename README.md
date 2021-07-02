@@ -21,7 +21,7 @@ Auto Lane Change with Blind spot monitoring (No Nudge)
 
 SCC smoother, improve stock scc
 
-SCC sync set speed on gas press, set your scc speed to the car current speed by using use of the gas pedal.
+SCC speed sync on gas press, (handsfree) set your scc speed to the car current speed by using use of the gas pedal.
 
 Color Tire Pressure Monitor System (TPMS) psi display
 
