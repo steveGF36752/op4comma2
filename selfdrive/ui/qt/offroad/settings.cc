@@ -396,12 +396,7 @@ QWidget * community_panel() {
                                             "",
                                             "../assets/offroad/icon_road.png"
                                             ));
-  toggles_list->addWidget(horizontal_line());
-  toggles_list->addWidget(new ParamControl("UseSMDPSHarness",
-                                            "Use SMDPS Harness",
-                                            "",
-                                            "../assets/offroad/icon_settings.png"
-                                            ));
+
   QWidget *widget = new QWidget;
   widget->setLayout(toggles_list);
   return widget;
