@@ -49,7 +49,8 @@ def manager_init():
     ("SccSmootherSyncGasPressed", "1"),
     ("FuseWithStockScc", "1"),
     ("ShowDebugUI", "0"),
-    ("CustomLeadMark", "0")
+    ("CustomLeadMark", "0"),
+    ("UseSMDPSHarness", "0")
   ]
   if not PC:
     default_params.append(("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')))
